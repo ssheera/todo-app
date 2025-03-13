@@ -1,4 +1,4 @@
-import { createServerClient, serializeCookieHeader } from "@supabase/ssr"
+import { CookieOptions, createServerClient, serializeCookieHeader } from "@supabase/ssr"
 import { NextApiRequest, NextApiResponse } from "next"
 
 export function createClient({ req, res }: { req: NextApiRequest; res: NextApiResponse }) {
@@ -10,13 +10,13 @@ export function createClient({ req, res }: { req: NextApiRequest; res: NextApiRe
         get(name: string) {
           return req.cookies[name]
         },
-        set(name: string, value: string, options: any) {
+        set(name: string, value: string, options: CookieOptions) {
           res.setHeader(
             'Set-Cookie',
             serializeCookieHeader(name, value, options)
           )
         },
-        remove(name: string, options: any) {
+        remove(name: string, options: CookieOptions) {
           res.setHeader(
             'Set-Cookie',
             serializeCookieHeader(name, '', options)

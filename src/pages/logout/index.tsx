@@ -1,7 +1,7 @@
 import { LoaderCircleIcon } from "lucide-react"
 import { createClient } from "@/lib/supabase/server"
 import { GetServerSideProps } from "next"
-
+import { NextApiRequest, NextApiResponse } from "next"
 export default async function LogoutPage() {
   return (
 		<div className="flex items-center justify-center h-screen">
@@ -12,7 +12,7 @@ export default async function LogoutPage() {
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
 	try {
-		const supabase = await createClient({ req, res })
+		const supabase = createClient({ req: req as NextApiRequest, res: res as NextApiResponse })
 		await supabase.auth.signOut()
 	} finally{
 		return {
