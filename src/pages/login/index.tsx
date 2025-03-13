@@ -3,7 +3,6 @@ import { CheckCheck } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -12,7 +11,7 @@ import Link from "next/link"
 import { useAppDispatch, useAppSelector } from "@/lib/hooks"
 import { signIn } from "@/redux/reducers/authReducer"
 import { useSearchParams } from "next/navigation"
-import { AlertDialog, AlertDialogAction, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog"
+import { AlertDialog, AlertDialogAction, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "@/components/ui/alert-dialog"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 
 const formSchema = z.object({
