@@ -4,7 +4,7 @@ export const processTask = async (text: string) => {
 
   const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY as string)
   const model = genAI.getGenerativeModel({
-    model: 'gemini-1.5-flash',
+    model: 'gemini-2.5-flash',
     systemInstruction: 'You are a helpful assistant that generates improved todo tasks based on the user\'s input initial todo task name. For example, if the user inputs "Buy groceries tomorrow", the output should be a todo task with the title "Buy groceries" and the due date of tomorrow.\nTodays Date: ' + new Date().toISOString()
   })
   model.generationConfig.responseSchema = {
