@@ -42,6 +42,9 @@ export const todoSlice = createSlice({
     builder.addCase(signIn.rejected, (state, action) => {
       state.loading = false
       state.error = action.payload as string
+      if (typeof state.error === "string" && state.error.includes("503")) {
+        state.error = "This project is currently inactive. Please try again later"
+      }
     })
   ]
 })

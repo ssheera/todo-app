@@ -14,20 +14,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     email
   })
 
+  if (error?.message === "fetch failed" || error?.message.includes("pause")) {
+    return res.status(503).json({})
+  }
+
   if (error) {
-    if (
-      error.message &&
-      (
-        error.message.includes("paused") ||
-        error.message.toLowerCase().includes("project is inactive") ||
-        error.message.toLowerCase().includes("project is paused") ||
-        error.message.toLowerCase().includes("connection refused")
-      )
-    ) {
-      return res.status(503).json({
-        error: "The authentication service is temporarily unavailable because the Supabase project is paused for inactivity. Please contact the developer so they can resolve this"
-      })
-    }
     return res.status(400).json({ error: error.message })
   }
 
